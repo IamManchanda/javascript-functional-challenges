@@ -1,2 +1,4 @@
-console.log( liftF(add)(3)(7) );
-console.log( liftF(mul)(5)(6) );
+const index = fromToFn(1, 3);
+console.log( index() );
+console.log( index() );
+console.log( index() );
