@@ -189,3 +189,25 @@ const revocable = function (fn) {
     },
   };
 };
+
+const m = function (value, source = value) {
+  return {
+    value,
+    source: String(source),
+  };
+};
+
+const liftM = function (fn, op) {
+  return function (a, b) {
+    if (typeof a === 'number') a = m(a);
+    if (typeof b === 'number') b = m(b);
+    return m(
+      fn(a.value, b.value),
+      `(${a.source}${op}${b.source})`,
+    );
+  };
+};
+
+const exp = function () {
+  
+};
