@@ -45,7 +45,6 @@ const addF = function (a) {
   };
 };
 
-// Higher order functions
 const liftF = function (fn) {
   return function (a) {
     return function (b) {
@@ -104,7 +103,7 @@ const fromFn = function (a) {
 
 const toFn = function (fnGen, limit) {
   return function () {
-    let value = fnGen();
+    const value = fnGen();
     if (value < limit) return value;
     return undefined;
   };
@@ -114,4 +113,29 @@ const fromToFn = function (a, limit) {
   return toFn(fromFn(a), limit);
 };
 
-// 5 mins - challenge 4
+const element = function (arr, fnGen = fromToFn(0, arr.length)) {
+  return function () {
+    const index = fnGen();
+    if (index !== undefined) return arr[index];
+    return undefined;
+  };
+};
+
+const collect = function (fnGen, arr) {
+  return function () {
+    const value = fnGen();
+    if (value !== undefined) arr.push(value);
+    return value;
+  };
+};
+
+const filter = function (fnGen, fnPred) {
+  return function recur() {
+    const value = fnGen();
+    if (value === undefined || fnPred(value)) return value;
+    return recur();
+  };
+};
+
+// 6 mins - Challenge 5
+
