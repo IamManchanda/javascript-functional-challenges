@@ -146,3 +146,20 @@ const concat = function (fnGen1, fnGen2) {
     return fnGen();
   };
 };
+
+const genSymF = function (prefix) {
+  let number = 0;
+  return function () {
+    number += 1;
+    return `${prefix}${number}`;
+  };
+};
+
+const fibonacciF = function (a, b) {
+  return function () {
+    const next = a;
+    a = b;
+    b += next;
+    return next;
+  };
+};
