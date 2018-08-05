@@ -17,12 +17,12 @@ const add = function (a, b) {
   return a + b;
 };
 
-const sub = function (a, b) {
-  return a - b;
-};
-
 const mul = function (a, b) {
   return a * b;
+};
+
+const sub = function (a, b) {
+  return a - b;
 };
 
 const double = function (a) {
@@ -166,11 +166,11 @@ const fibonacciF = function (a, b) {
 
 const counter = function (value) {
   return {
-    up: function () {
+    up() {
       value += 1;
       return value;
     },
-    down: function () {
+    down() {
       value -= 1;
       return value;
     },
@@ -179,11 +179,11 @@ const counter = function (value) {
 
 const revocable = function (fn) {
   return {
-    invoke: function (...a) {
+    invoke(...a) {
       if (fn !== undefined) return fn(...a);
       return undefined;
     },
-    revoke: function () {
+    revoke() {
       fn = undefined;
       return 'Function sucessfully Revoked';
     },
@@ -208,6 +208,54 @@ const liftM = function (fn, op) {
   };
 };
 
-const exp = function () {
-  
+const exp = function (value) {
+  return (Array.isArray(value)) ? value[0](
+    exp(value[1]), 
+    exp(value[2]),
+  ) : value;
+};
+
+const addG = function (first) {
+  const more = function (next) {
+    if (next === undefined) return first;
+    first += next;
+    return more;
+  };
+  if (first !== undefined) return more;
+  return undefined;
+};
+
+const liftG = function (fn) {
+  return function (first) {
+    if (first === undefined) return undefined;
+    return function more(next) {
+      if (next === undefined) return first;
+      first = fn(first, next);
+      return more;
+    };
+  };
+};
+
+const arrayG = function (first) {
+  if (first === undefined) return [];
+  return liftG(function (arr, value) {
+    arr.push(value);
+    return arr;
+  })([first]);
+};
+
+const continuize = function (fnA) {
+  return function (fnB, arg) {
+    return fnB(fnA(arg));
+  };
+};
+
+const constructor = function (spec) {
+  // eslint-disable-next-line prefer-const
+  let { member } = spec;
+  const { other } = otherConstructor(spec);
+  const method = function () {
+    // spec, member, other, method
+  };
+  return Object.freeze({ method, other });
 };
