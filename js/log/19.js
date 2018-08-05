@@ -3,7 +3,7 @@ var fil = filter(fromToFn(0, 5), function third(value) {
 });
 
 console.log({
-  time1: fil(),
-  time2: fil(),
-  time3: fil(),
+  time1: fil(), // 0
+  time2: fil(), // 3
+  time3: fil(), // undefined
 });

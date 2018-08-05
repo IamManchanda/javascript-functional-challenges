@@ -163,3 +163,16 @@ const fibonacciF = function (a, b) {
     return next;
   };
 };
+
+const counter = function (value) {
+  return {
+    up() {
+      value += 1;
+      return value;
+    },
+    down() {
+      value -= 1;
+      return value;
+    },
+  };
+};

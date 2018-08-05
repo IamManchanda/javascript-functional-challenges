@@ -1,3 +1,3 @@
 console.log({
-  identity: identity(3),
+  identity: identity(3), // 3
 });
