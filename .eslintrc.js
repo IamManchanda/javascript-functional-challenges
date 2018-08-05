@@ -18,6 +18,7 @@ module.exports = {
     'no-unused-expressions': 0,
     'no-param-reassign': 0,
     'prefer-arrow-callback': 0,
+    'object-shorthand': 0,
     'no-var': 0,
     // Never use these last 3 in a real application... I mean never!
     'no-alert': 0,

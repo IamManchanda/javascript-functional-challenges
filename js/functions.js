@@ -1,4 +1,4 @@
-// Using explicit code instead of implicit arrows.
+// Using explicit code instead of implicit code for function representation.
 const identity = function (n) {
   return n;
 };
@@ -166,13 +166,26 @@ const fibonacciF = function (a, b) {
 
 const counter = function (value) {
   return {
-    up() {
+    up: function () {
       value += 1;
       return value;
     },
-    down() {
+    down: function () {
       value -= 1;
       return value;
+    },
+  };
+};
+
+const revocable = function (fn) {
+  return {
+    invoke: function (...a) {
+      if (fn !== undefined) return fn(...a);
+      return undefined;
+    },
+    revoke: function () {
+      fn = undefined;
+      return 'Function sucessfully Revoked';
     },
   };
 };
