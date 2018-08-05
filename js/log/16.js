@@ -1,6 +1,6 @@
 var index = fromToFn(1, 3);
 console.log({
-  firstTime: index(),
-  secondTime: index(),
-  thirdTime: index(),
+  time1: index(),
+  time2: index(),
+  time3: index(),
 });

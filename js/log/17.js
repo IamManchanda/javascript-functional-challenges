@@ -3,9 +3,9 @@ var ele = element([
 ]);
 
 console.log({
-  firstTime: ele(),
-  secondTime: ele(),
-  thirdTime: ele(),
-  fourthTime: ele(),
-  fifthTime: ele(),
+  time1: ele(),
+  time2: ele(),
+  time3: ele(),
+  time4: ele(),
+  time5: ele(),
 });

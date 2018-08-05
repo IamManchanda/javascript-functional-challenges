@@ -137,5 +137,12 @@ const filter = function (fnGen, fnPred) {
   };
 };
 
-// 6 mins - Challenge 5
-
+const concat = function (fnGen1, fnGen2) {
+  let fnGen = fnGen1;
+  return function () {
+    const value = fnGen();
+    if (value !== undefined) return value;
+    fnGen = fnGen2;
+    return fnGen();
+  };
+};
