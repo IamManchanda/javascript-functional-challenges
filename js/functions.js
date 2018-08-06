@@ -259,3 +259,19 @@ const constructor = function (spec) {
   };
   return Object.freeze({ method, other });
 };
+
+const vector = function () {
+  const array = [];
+  return {
+    get(index) {
+      return array[+index];
+    },
+    store(index, value) {
+      array[+index] = value;
+    },
+    append(value) {
+      // array.push(value) - Don't use as it gives chance to exploit for hackers 
+      array[array.length] = value;
+    },
+  };
+};
